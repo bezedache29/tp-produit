@@ -1,24 +1,14 @@
-# tp-produit
+# Tp-produit
 
-## Project setup
-```
-npm install
-```
+## Contraintes :
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- Il faut qu'il y est du post, du delete, du get et de l'update
+- L'usage de routes multiples et vuex est obligatoire
+- Vous devrez utiliser un logiciel de gestion de tâches pour vous organisez
+- Utilisez git afin de ne pas vous marcher dessus également
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Commencez par faire des wireframes, même très simples, avant de partir trop loin dans le code
 
-### Lints and fixes files
-```
-npm run lint
-```
+Le visuel sera noté, même si moins important que le reste.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+> Vous avez jusqu'à vendredi 28 mai, 12h30
