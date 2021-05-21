@@ -26,8 +26,8 @@ L'idée serait d'avoir :
 
 ## Options : 
 
-- Ajout d'un formulaire de contact
-- Ajout de commentaires sur un produit et de l'afficher dans les détails (relation produit / commentaire)
+- Ajout d'un formulaire de contact. Les informations du formulaire seront stockées en bdd et on pourra les checks sur une page dédiée
+- Ajouter des commentaires sur un produit dans les détails de ce dernier et voir tous les commentaires qui concerne ce produit en dessous de ses caractéristiques (relation produit / commentaire)
 
 ## Fonctionnement :
 
