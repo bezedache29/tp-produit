@@ -47,3 +47,19 @@ Le formulaire contient :
 Le commentaire contient :
 - Un nom/email,
 - Un texte
+
+### ✅ Listes des tâches à faire :
+
+- [x]  Installation de Vue
+- [x]  Installation de Vue router + Mise en place
+- [x]  Installation de Sass + Mise en place
+- [x]  Composant NavbarApp qui s'affichera sur toutes les pages + Installation des routes
+- [x]  Composant HomeApp qui sera la page d'accueil du site
+- [x]  Composant ProductList qui affichera tous les produits
+- [x]  Composant ProductCard qui sera appelé dans dans ProductList pour afficher les infos d'un produit
+- [ ]  Composant ProductDetail qui affichera les détails d'un produit + Style
+- [ ]  Composant ContactForm qui affichera un formulaire de contact + Style
+- [ ]  Composant ResponsesForm qui affichera toutes les résultats de tous les envoies de formulaire + Style
+- [ ]  Installation de Vuex
+- [ ]  Mise en place du store
+
