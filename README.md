@@ -58,6 +58,8 @@ Le commentaire contient :
 - [x]  Composant ProductList qui affichera tous les produits
 - [x]  Composant ProductCard qui sera appelé dans dans ProductList pour afficher les infos d'un produit
 - [x]  Installation de Vuex + Mise en place du store
+- [x]  Composant Bouton custom pour être réutilisable
+- [x]  Composant Modal custom pour être réutilisable
 - [ ]  Composant ProductDetail qui affichera les détails d'un produit + Style
 - [ ]  Composant ContactForm qui affichera un formulaire de contact + Style
 - [ ]  Composant ResponsesForm qui affichera toutes les résultats de tous les envoies de formulaire + Style
