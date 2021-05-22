@@ -41,7 +41,22 @@ img {
 }
 body {
     height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+.mr-1 {
+  margin-right: 10px;
+}
+.ml-1 {
+  margin-left: 10px;
+}
+.text-danger {
+  color: #F73B1E;
+}
+.text-center {
+  text-align: center;
+}
+
 /* VARIABLES */
 $primary-color: #F56A00;
 $secondary-color: #FFD294;
