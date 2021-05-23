@@ -66,7 +66,7 @@ Le commentaire contient :
 - [x]  Récupération de la liste des produits en BDD pour les afficher dans ProductList
 - [x]  Passage des props du produit dans ProductCard
 - [x]  Début style ProductList + ProductCard + ModalApp
-- [ ]  Modifier un produit
+- [x]  Modifier un produit avec gestion des erreurs
 - [ ]  Supprimer un produit
 - [ ]  Voir les détails d'un produit avec l'apparition du champ details du produit
 - [ ]  Composant ProductDetail qui affichera les détails d'un produit + Style

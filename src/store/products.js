@@ -13,6 +13,8 @@ const products = {
       hasError: false,
       url: 'https://tp-produit-ddb26-default-rtdb.europe-west1.firebasedatabase.app/',
       isProductAdded: false,
+      productUpdated: false
+
     }
   },
   getters: {
@@ -47,6 +49,9 @@ const products = {
     },
     UPDATE_PRODUCTS(state, payload) {
       state.products = payload
+    },
+    IS_PRODUCT_UPDATED(state, payload) {
+      state.productUpdated = payload
     }
   },
   actions: {
@@ -135,7 +140,7 @@ const products = {
         const item = { title: payload.title, img: payload.img, desc: payload.desc, price: payload.price, details: payload.details }
 
         try{
-          const response = await axios.post(url, item);
+          const response = await axios.post(url, item)
           if(response.statusText === 'OK') {
             context.commit('SHOW_MODAL_ADD_PRODUCT', false)
             context.commit('IS_PRODUCT_ADDED', true)
@@ -151,6 +156,64 @@ const products = {
       const firebaseResponse = await axios.get(url)
 
       context.commit('UPDATE_PRODUCTS', firebaseResponse.data)
+    },
+    resetErrors(context) {
+      context.commit('TITLE_ERROR', false)
+      context.commit('IMAGE_ERROR', false)
+      context.commit('DESC_ERROR', false)
+      context.commit('PRICE_ERROR', false)
+    },
+    async updateProduct(context, payload) {
+
+      context.commit('HAS_ERROR', false)
+
+      if (payload.title === '') {
+        context.commit('TITLE_ERROR', true)
+        context.commit('HAS_ERROR', true)
+      } else {
+        context.commit('TITLE_ERROR', false)
+      }
+      if (payload.img === '') {
+        context.commit('IMAGE_ERROR', true)
+        context.commit('HAS_ERROR', true)
+      } else {
+        context.commit('IMAGE_ERROR', false)
+      }
+      if (payload.desc === '') {
+        context.commit('DESC_ERROR', true)
+        context.commit('HAS_ERROR', true)
+      } else {
+        context.commit('DESC_ERROR', false)
+      }
+      if (payload.price === '') {
+        context.commit('PRICE_ERROR', true)
+        context.commit('HAS_ERROR', true)
+      } else {
+        context.commit('PRICE_ERROR', false)
+      }
+
+      if (context.state.hasError === false) {
+
+        const url = `${context.state.url}/products/${payload.productId}.json`
+
+        const product = {
+          title: payload.title, 
+          img: payload.img,
+          desc: payload.desc,
+          price: payload.price,
+          details: payload.details 
+        }
+
+        try{
+          const response = await axios.put(url, product)
+  
+          if(response.statusText === 'OK') {
+            context.commit('IS_PRODUCT_UPDATED', product)
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      }
     }
   }
 }

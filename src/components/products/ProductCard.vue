@@ -20,7 +20,7 @@
           <summary>Actions</summary>
           <div class="product-card__body__btns">
             <button-primary color="danger">Supprimer</button-primary>
-            <button-primary color="warning">Modifier</button-primary>
+            <button-primary color="warning" @click="showModalUpdateProduct(id)">Modifier</button-primary>
           </div>
         </details>
       </div>
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 import ButtonPrimary from '../UI/buttons/ButtonPrimary'
 
@@ -42,6 +43,9 @@ export default {
   components: {
     ButtonPrimary
   },
+  methods: {
+    ...mapActions('product', ['showModalUpdateProduct'])
+  }
 }
 </script>
 

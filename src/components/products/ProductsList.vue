@@ -7,7 +7,7 @@
     </div>
 
     <!-- Alert Success -->
-    <alert-msg v-if="isAlert">Un nouveau produit a été ajouté avec succès !</alert-msg>
+    <alert-msg v-if="isAlert">Mise à jour de la liste des produits</alert-msg>
 
     <!-- Start Modal Ajout Produit -->
     <modal-app v-if="getIsShowModalAddProduct">
@@ -47,6 +47,44 @@
     </modal-app>
     <!-- End Modal Ajout Produit -->
 
+    <!-- Start Modal Update Produit -->
+    <modal-app v-if="isModalUpdate">
+      <template v-slot:header>
+        Modification d'un produit
+      </template>
+      <template v-slot:default>
+        <div class="form-group">
+          <label for="title" class="form-group__label">Titre du produit*</label>
+          <input id="title" type="text" class="form-group__input" v-model="titleUpdate" @blur="checkTitle(titleUpdate)" />
+        </div>
+        <p v-if="titleError" class="form-group__error">Le titre doit être rempli</p>
+        <div class="form-group">
+          <label for="img" class="form-group__label">Url de l'image*</label>
+          <input id="img" type="text" class="form-group__input" v-model="imgUpdate" @blur="checkImg(imgUpdate)" />
+        </div>
+        <p v-if="imgError" class="form-group__error">L'url est obligatoire et doit être un url valide</p>
+        <div class="form-group">
+          <label for="desc" class="form-group__label">Petite description*</label>
+          <input id="desc" type="text" class="form-group__input" v-model="descUpdate" @blur="checkDesc(descUpdate)" />
+        </div>
+        <p v-if="descError" class="form-group__error">Une description est obligatoire</p>
+        <div class="form-group">
+          <label for="price" class="form-group__label">Prix en euros (ex: 12.34)*</label>
+          <input id="price" type="number" class="form-group__input" v-model="priceUpdate" @blur="checkPrice(priceUpdate)" />
+        </div>
+        <p v-if="priceError" class="form-group__error">Le prix est obligatoire et ne contient que des chiffres</p>
+        <div class="form-group">
+          <label for="details" class="form-group__label">Description détaillée</label>
+          <textarea id="details" class="form-group__textarea" cols="30" rows="10" v-model="detailsUpdate"></textarea>
+        </div>
+      </template>
+      <template v-slot:footer>
+        <button-primary color="danger" class="mr-1" @click="closeModalUpdateProduct">Annuler</button-primary>
+        <button-primary color="primary" class="ml-1" @click="updateProduct(productUpdate)">Modifier</button-primary>
+      </template>
+    </modal-app>
+    <!-- End Modal Update Produit -->
+
     <!-- Faire une recherche par titre de produit ?  -->
     
     <!-- Liste des Produits -->
@@ -79,7 +117,12 @@ export default {
       img: '',
       desc: '',
       price: '',
-      details: ''
+      details: '',
+      titleUpdate: '',
+      descUpdate: '',
+      imgUpdate: '',
+      priceUpdate: '',
+      detailsUpdate: ''
     }
   },
   components: {
@@ -100,7 +143,23 @@ export default {
       this.searchAllProducts()
       this.resetInputs()
       this.showAlert()
+    },
+    product() {
+      this.productNeedUpdate()
+    },
+    isProductUpdated() {
+      this.resetUpdate()
+      this.searchAllProducts()
+      this.showAlert()
+    },
+    cleanErrors() {
+      // console.log(this.cleanErrors)
+      this.resetErrors()
+    },
+    productUpdated() {
+      this.newProduct()
     }
+    
   },
 
   computed: {
@@ -109,6 +168,9 @@ export default {
     },
     product() {
       return { title: this.title, img: this.img, desc: this.desc, price: this.price, details: this.details }
+    },
+    productUpdate() {
+      return { productId: this.productId, title: this.titleUpdate, img: this.imgUpdate, desc: this.descUpdate, price: this.priceUpdate, details: this.detailsUpdate }
     },
     ...mapGetters('products', [
       'getIsShowModalAddProduct',
@@ -120,9 +182,17 @@ export default {
       'descError',
       'priceError',
       'hasError',
-      'isProductAdded'
+      'isProductAdded',
+      'productUpdated'
     ]),
-    ...mapState('alert', ['isAlert'])
+    ...mapState('alert', ['isAlert']),
+    ...mapState('product', [
+      'product',
+      'productId',
+      'isModalUpdate',
+      'isProductUpdated',
+      'cleanErrors'
+    ])
   },
 
   methods: {
@@ -141,9 +211,23 @@ export default {
       'checkPrice',
       'addProduct',
       'resetSubmit',
-      'searchAllProducts'
+      'searchAllProducts',
+      'resetErrors',
+      'updateProduct'
     ]),
-    ...mapActions('alert', ['showAlert'])
+    ...mapActions('alert', ['showAlert']),
+    productNeedUpdate() {
+      this.titleUpdate = this.product.title
+      this.imgUpdate = this.product.img
+      this.descUpdate = this.product.desc
+      this.priceUpdate = this.product.price
+      this.detailsUpdate = this.product.details
+    },
+    ...mapActions('product', [
+      'closeModalUpdateProduct',
+      'resetUpdate',
+      'newProduct'
+    ])
   }
 
 }
