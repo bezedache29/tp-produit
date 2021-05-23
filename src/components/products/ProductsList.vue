@@ -6,6 +6,9 @@
       <button @click="showModalAddProduct(true)">Ajouter un produit</button>
     </div>
 
+    <!-- Alert Success -->
+    <alert-msg v-if="isAlert">Un nouveau produit a été ajouté avec succès !</alert-msg>
+
     <!-- Start Modal Ajout Produit -->
     <modal-app v-if="getIsShowModalAddProduct">
       <template v-slot:header>
@@ -66,6 +69,7 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import ProductCard from './ProductCard'
 import ModalApp from '../UI/ModalApp'
 import ButtonPrimary from '../UI/buttons/ButtonPrimary'
+import AlertMsg from '../UI/AlertMsg'
 
 export default {
   name: 'product-list',
@@ -81,11 +85,21 @@ export default {
   components: {
     ProductCard,
     ModalApp,
-    ButtonPrimary
+    ButtonPrimary,
+    AlertMsg
   },
 
   mounted() {
     this.showModalAddProduct(false)
+  },
+
+  watch: {
+    isProductAdded() {
+      this.resetSubmit()
+      this.searchNewProducts()
+      this.resetInputs()
+      this.showAlert()
+    }
   },
 
   computed: {
@@ -103,19 +117,31 @@ export default {
       'imgError',
       'descError',
       'priceError',
-      'hasError'
-    ])
+      'hasError',
+      'isProductAdded'
+    ]),
+    ...mapState('alert', ['isAlert'])
   },
 
   methods: {
+    resetInputs() {
+      this.title = ''
+      this.img = ''
+      this.desc = ''
+      this.price = ''
+      this.details = ''
+    },
     ...mapActions('products', [
       'showModalAddProduct',
       'checkTitle',
       'checkImg',
       'checkDesc',
       'checkPrice',
-      'addProduct'
+      'addProduct',
+      'searchNewProducts',
+      'resetSubmit'
     ]),
+    ...mapActions('alert', ['showAlert'])
   }
 
 }

@@ -60,6 +60,9 @@ Le commentaire contient :
 - [x]  Installation de Vuex + Mise en place du store
 - [x]  Composant Bouton custom pour être réutilisable
 - [x]  Composant Modal custom pour être réutilisable
+- [x]  Installation d'axios pour les requêtes vers firebase
+- [x]  Composant AlertMsg qui s'affichera avec un message personnalisé lors d'une action avec succès
+- [x]  Ajout d'un nouveau produit en BDD via la modal
 - [ ]  Composant ProductDetail qui affichera les détails d'un produit + Style
 - [ ]  Composant ContactForm qui affichera un formulaire de contact + Style
 - [ ]  Composant ResponsesForm qui affichera toutes les résultats de tous les envoies de formulaire + Style

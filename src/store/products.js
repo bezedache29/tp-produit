@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const products = {
   namespaced: true,
   state() {
@@ -7,7 +9,9 @@ const products = {
       imgError: false,
       descError: false,
       priceError: false,
-      hasError: false
+      hasError: false,
+      url: 'https://tp-produit-ddb26-default-rtdb.europe-west1.firebasedatabase.app/',
+      isProductAdded: false,
     }
   },
   getters: {
@@ -34,6 +38,10 @@ const products = {
     HAS_ERROR(state, payload) {
       state.hasError = payload
     },
+    IS_PRODUCT_ADDED(state, payload) {
+      state.isProductAdded = payload
+    }
+
   },
   actions: {
     showModalAddProduct(context, payload) {
@@ -73,6 +81,9 @@ const products = {
         context.commit('DESC_ERROR', false)
       }
     },
+    resetSubmit(context) {
+      context.commit('IS_PRODUCT_ADDED', false)
+    },
     checkPrice(context, payload) {
       // Si c'est vide ou que la valeur n'est pas un chiffre on indique qu'il y a une erreur
       // Sinon on pass la variable a false
@@ -83,9 +94,7 @@ const products = {
         context.commit('PRICE_ERROR', false)
       }
     },
-    addProduct(context, payload) {
-
-      console.log(context)
+    async addProduct(context, payload) {
       
       if (payload.title === '') {
         context.commit('TITLE_ERROR', true)
@@ -117,12 +126,23 @@ const products = {
       }
 
       if (context.state.hasError === false) {
-        console.log("On envoie les données en BDD")
-        // On reset les champs
-        // On ferme la modal
-        // On recharge tous les produits
-        // On ouvre une modal informant le success ??
+
+        const url = context.state.url + '/products.json'
+        const item = { title: payload.title, img: payload.img, desc: payload.desc, price: payload.price, details: payload.details }
+
+        try{
+          const response = await axios.post(url, item);
+          if(response.statusText === 'OK') {
+            context.commit('SHOW_MODAL_ADD_PRODUCT', false)
+            context.commit('IS_PRODUCT_ADDED', true)
+          }
+        } catch (e) {
+          console.log(e);
+        }
       }
+    },
+    async searchNewProducts() {
+      console.log('Je recharge la page avec les nouveaux produits')
     }
   }
 }
