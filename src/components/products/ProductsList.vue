@@ -3,7 +3,7 @@
 
     <!-- Bouton d'ajout -->
     <div class="products__btn">
-      <button @click="showModalAddProduct(true)">Ajouter un produit</button>
+      <button-primary color="primary" @click="showModalAddProduct(true)">Ajouter un produit</button-primary>
     </div>
 
     <!-- Alert Success -->
@@ -31,7 +31,7 @@
         </div>
         <p v-if="descError" class="form-group__error">Une description est obligatoire</p>
         <div class="form-group">
-          <label for="price" class="form-group__label">Prix en centimes*</label>
+          <label for="price" class="form-group__label">Prix en euros (ex: 12.34)*</label>
           <input id="price" type="number" class="form-group__input" v-model="price" @blur="checkPrice(price)" />
         </div>
         <p v-if="priceError" class="form-group__error">Le prix est obligatoire et ne contient que des chiffres</p>
@@ -51,11 +51,11 @@
     
     <!-- Liste des Produits -->
     <div class="products__cards">
-      <product-card></product-card>
-      <product-card></product-card>
-      <product-card></product-card>
-      <product-card></product-card>
-      <product-card></product-card>
+      <product-card 
+        v-for="(product, id) in getProducts" :key="id" 
+        :product="product"
+        :id="id"
+      />
     </div>
 
   </div>
@@ -91,12 +91,13 @@ export default {
 
   mounted() {
     this.showModalAddProduct(false)
+    this.searchAllProducts()
   },
 
   watch: {
     isProductAdded() {
       this.resetSubmit()
-      this.searchNewProducts()
+      this.searchAllProducts()
       this.resetInputs()
       this.showAlert()
     }
@@ -110,7 +111,8 @@ export default {
       return { title: this.title, img: this.img, desc: this.desc, price: this.price, details: this.details }
     },
     ...mapGetters('products', [
-      'getIsShowModalAddProduct'
+      'getIsShowModalAddProduct',
+      'getProducts'
     ]),
     ...mapState('products', [
       'titleError',
@@ -138,8 +140,8 @@ export default {
       'checkDesc',
       'checkPrice',
       'addProduct',
-      'searchNewProducts',
-      'resetSubmit'
+      'resetSubmit',
+      'searchAllProducts'
     ]),
     ...mapActions('alert', ['showAlert'])
   }
@@ -163,10 +165,6 @@ export default {
     display: flex;
     align-items: center;
     flex-flow: row wrap;
-  }
-
-  &__card {
-    
   }
 }
 .form-group {

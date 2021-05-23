@@ -1,5 +1,5 @@
 <template>
-  <button :class="{ primary: primary, danger: danger }">
+  <button :class="{ primary: primary, danger: danger, warning: warning }">
     <slot></slot>
   </button>
 </template>
@@ -13,12 +13,14 @@ export default {
   data() {
     return {
       primary: false,
-      danger: false
+      danger: false,
+      warning: false
     }
   },
   mounted() {
     this.primary = false
     this.danger = false
+    this.warning = false
     this.setColor(this.color)
   },
 
@@ -29,7 +31,9 @@ export default {
         this.primary = true
       } else if (color === 'danger') {
         this.danger = true
-      } 
+      } else {
+        this.warning = true
+      }
     }
   }
 }
@@ -41,7 +45,7 @@ button {
   background-color: white;
   border: 1px solid black;
   border-radius: 12px;
-  padding: 10px 40px;
+  padding: 10px 20px;
   cursor: pointer;
 }
 .primary {
@@ -62,6 +66,15 @@ button {
   &:hover {
     background-color: white;
     color: #F73B1E;
+  }
+}
+.warning {
+  background-color: #F7CC20;
+  border-color: #F7CC20;
+  color: #F56A00;
+
+  &:hover {
+    border-color: #F56A00;
   }
 }
 

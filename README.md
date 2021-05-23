@@ -63,6 +63,12 @@ Le commentaire contient :
 - [x]  Installation d'axios pour les requêtes vers firebase
 - [x]  Composant AlertMsg qui s'affichera avec un message personnalisé lors d'une action avec succès
 - [x]  Ajout d'un nouveau produit en BDD via la modal
+- [x]  Récupération de la liste des produits en BDD pour les afficher dans ProductList
+- [x]  Passage des props du produit dans ProductCard
+- [x]  Début style ProductList + ProductCard + ModalApp
+- [ ]  Modifier un produit
+- [ ]  Supprimer un produit
+- [ ]  Voir les détails d'un produit avec l'apparition du champ details du produit
 - [ ]  Composant ProductDetail qui affichera les détails d'un produit + Style
 - [ ]  Composant ContactForm qui affichera un formulaire de contact + Style
 - [ ]  Composant ResponsesForm qui affichera toutes les résultats de tous les envoies de formulaire + Style

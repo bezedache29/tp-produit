@@ -50,6 +50,12 @@ body {
 .ml-1 {
   margin-left: 10px;
 }
+.m-1 {
+  margin: 10px;
+}
+.t-u {
+  text-decoration: underline;
+}
 .text-danger {
   color: #F73B1E;
 }
