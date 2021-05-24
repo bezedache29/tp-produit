@@ -68,7 +68,8 @@ Le commentaire contient :
 - [x]  Début style ProductList + ProductCard + ModalApp
 - [x]  Modifier un produit avec gestion des erreurs
 - [x]  Composant ProductDetails permet de voir les détails du produit sélectionné. (Détails + Commentaires du produit)
-- [ ]  Composant CommentsProduct qui permet de lister et créer des commentaires sur un produit sélectionné
+- [x]  Composant ProductDetails permet d'ajouter et de voir les commentaires du produit
+- [x]  Composant ProductComment qui permet de voir les détaisl d'un commentaire
 - [ ]  Supprimer un produit
 - [ ]  Voir les détails d'un produit avec l'apparition du champ details du produit
 - [ ]  Composant ProductDetail qui affichera les détails d'un produit + Style

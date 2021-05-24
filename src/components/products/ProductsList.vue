@@ -10,41 +10,43 @@
     <alert-msg v-if="isAlert">Mise à jour de la liste des produits</alert-msg>
 
     <!-- Start Modal Ajout Produit -->
-    <modal-app v-if="getIsShowModalAddProduct">
-      <template v-slot:header>
-        Ajout d'un produit
-      </template>
-      <template v-slot:default>
-        <div class="form-group">
-          <label for="title" class="form-group__label">Titre du produit*</label>
-          <input id="title" type="text" class="form-group__input" v-model="title" @blur="checkTitle(title)" />
-        </div>
-        <p v-if="titleError" class="form-group__error">Le titre doit être rempli</p>
-        <div class="form-group">
-          <label for="img" class="form-group__label">Url de l'image*</label>
-          <input id="img" type="text" class="form-group__input" v-model="img" @blur="checkImg(img)" />
-        </div>
-        <p v-if="imgError" class="form-group__error">L'url est obligatoire et doit être un url valide</p>
-        <div class="form-group">
-          <label for="desc" class="form-group__label">Petite description*</label>
-          <input id="desc" type="text" class="form-group__input" v-model="desc" @blur="checkDesc(desc)" />
-        </div>
-        <p v-if="descError" class="form-group__error">Une description est obligatoire</p>
-        <div class="form-group">
-          <label for="price" class="form-group__label">Prix en euros (ex: 12.34)*</label>
-          <input id="price" type="number" class="form-group__input" v-model="price" @blur="checkPrice(price)" />
-        </div>
-        <p v-if="priceError" class="form-group__error">Le prix est obligatoire et ne contient que des chiffres</p>
-        <div class="form-group">
-          <label for="details" class="form-group__label">Description détaillée</label>
-          <textarea id="details" class="form-group__textarea" cols="30" rows="10" v-model="details"></textarea>
-        </div>
-      </template>
-      <template v-slot:footer>
-        <button-primary color="danger" class="mr-1" @click="showModalAddProduct(false)">Annuler</button-primary>
-        <button-primary color="primary" class="ml-1" @click="addProduct(product)">Ajouter</button-primary>
-      </template>
-    </modal-app>
+    <transition name="bounce">
+      <modal-app v-if="getIsShowModalAddProduct">
+        <template v-slot:header>
+          Ajout d'un produit
+        </template>
+        <template v-slot:default>
+          <div class="form-group">
+            <label for="title" class="form-group__label">Titre du produit*</label>
+            <input id="title" type="text" class="form-group__input" v-model="title" @blur="checkTitle(title)" />
+          </div>
+          <p v-if="titleError" class="form-group__error">Le titre doit être rempli</p>
+          <div class="form-group">
+            <label for="img" class="form-group__label">Url de l'image*</label>
+            <input id="img" type="text" class="form-group__input" v-model="img" @blur="checkImg(img)" />
+          </div>
+          <p v-if="imgError" class="form-group__error">L'url est obligatoire et doit être un url valide</p>
+          <div class="form-group">
+            <label for="desc" class="form-group__label">Petite description*</label>
+            <input id="desc" type="text" class="form-group__input" v-model="desc" @blur="checkDesc(desc)" />
+          </div>
+          <p v-if="descError" class="form-group__error">Une description est obligatoire</p>
+          <div class="form-group">
+            <label for="price" class="form-group__label">Prix en euros (ex: 12.34)*</label>
+            <input id="price" type="number" class="form-group__input" v-model="price" @blur="checkPrice(price)" />
+          </div>
+          <p v-if="priceError" class="form-group__error">Le prix est obligatoire et ne contient que des chiffres</p>
+          <div class="form-group">
+            <label for="details" class="form-group__label">Description détaillée</label>
+            <textarea id="details" class="form-group__textarea" cols="30" rows="10" v-model="details"></textarea>
+          </div>
+        </template>
+        <template v-slot:footer>
+          <button-primary color="danger" class="mr-1" @click="showModalAddProduct(false)">Annuler</button-primary>
+          <button-primary color="primary" class="ml-1" @click="addProduct(product)">Ajouter</button-primary>
+        </template>
+      </modal-app>
+    </transition>
     <!-- End Modal Ajout Produit -->
 
     <!-- Start Modal Update Produit -->
@@ -300,6 +302,23 @@ export default {
     padding-left: 15px;
     font-size: 13px;
     color: #F73B1E;
+  }
+}
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 </style>
