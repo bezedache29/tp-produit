@@ -11,7 +11,8 @@ const comments = {
       url: 'https://tp-produit-ddb26-default-rtdb.europe-west1.firebasedatabase.app/',
       isCommentAdded: false,
       comments: {},
-      isShowComments: false
+      isShowComments: false,
+      isProductAndCommentsDeleted: false
     }
   },
   getters: {
@@ -37,6 +38,9 @@ const comments = {
     },
     SHOW_COMMENTS(state, payload) {
       state.isShowComments = payload
+    },
+    PRODUCT_AND_COMMENTS_DELETED(state, payload) {
+      state.isProductAndCommentsDeleted = payload
     }
   },
   actions: {
@@ -80,6 +84,7 @@ const comments = {
           if(response.statusText === 'OK') {
             context.commit('SHOW_MODAL_COMMENT', false)
             context.commit('IS_COMMENT_ADDED', true)
+            context.commit('SHOW_COMMENTS', true)
           }
         } catch (e) {
           console.log(e);
@@ -100,6 +105,44 @@ const comments = {
     },
     showComments(context, payload) {
       context.commit('SHOW_COMMENTS', payload)
+    },
+    async deleteProduct(context, payload) {
+      await context.dispatch('searchAllComments')
+      
+      const urlComments = context.state.url + 'commentaries'
+      const urlProducts = context.state.url + 'products'
+
+      for (const [key, value] of Object.entries(context.state.comments)) {
+        if (value.product_id === payload) {
+          
+          try {
+            const response = await axios.delete(`${urlComments}/${key}.json`)
+    
+            if(response.statusText !== 'OK') {
+              throw new Error("Une erreur est survenue !")
+            }
+            
+          } catch(error) {
+            alert(error.message)
+          }
+        }
+      }
+
+      try {
+        const reponse = await axios.delete(`${urlProducts}/${payload}.json`)
+
+        if(reponse.statusText !== 'OK') {
+          throw new Error("Une erreur est survenue !")
+        }
+
+        context.commit('PRODUCT_AND_COMMENTS_DELETED', true)
+
+      } catch(error) {
+        alert(error.message)
+      }
+    },
+    resetDeleteProductAndComments(context) {
+      context.commit('PRODUCT_AND_COMMENTS_DELETED', false)
     }
   }
 }

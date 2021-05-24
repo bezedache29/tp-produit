@@ -62,6 +62,12 @@ body {
 .text-center {
   text-align: center;
 }
+.flex-x-y {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* VARIABLES */
 $primary-color: #F56A00;

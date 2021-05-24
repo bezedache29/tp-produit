@@ -7,11 +7,12 @@ const product = {
     return {
       url: 'https://tp-produit-ddb26-default-rtdb.europe-west1.firebasedatabase.app/',
       product: {},
-      // productId: '',
+      productId: '',
       isModalUpdate: false,
       isProductUpdated: false,
       cleanErrors: false,
-      isParentHide: false
+      isParentHide: false,
+      isModalDeleteProduct: false
     }
   },
   getters: {
@@ -37,19 +38,32 @@ const product = {
     },
     HIDE_PARENT(state, payload) {
       state.isParentHide = payload
+    },
+    SHOW_MODAL_DELETE_PRODUCT(state, payload) {
+      state.isModalDeleteProduct = payload
     }
   },
   actions: {
     async showModalUpdateProduct(context, payload) {
 
+      context.commit('PRODUCT_ID', payload)
       context.commit('CLEAN_ERRORS', false)
 
       const url = `${context.state.url}/products/${payload}.json`
       const firebaseResponse = await axios.get(url)
 
       context.commit('SHOW_MODAL_UPDATE', true)
-      // context.commit('PRODUCT_ID', payload)
       context.commit('PRODUCT_INFO', firebaseResponse.data)
+    },
+    showModalDeleteProduct(context, payload) {
+      context.dispatch('getProduct', payload)
+      context.commit('PRODUCT_ID', payload)
+      context.commit('SHOW_MODAL_DELETE_PRODUCT', true)
+    },
+    closeModalDeleteProduct(context) {
+      context.commit('RESET_PRODUCT')
+      context.commit('PRODUCT_ID', '')
+      context.commit('SHOW_MODAL_DELETE_PRODUCT', false)
     },
     closeModalUpdateProduct(context) {
       context.commit('CLEAN_ERRORS', true)

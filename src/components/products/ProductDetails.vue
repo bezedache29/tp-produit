@@ -95,6 +95,8 @@ export default {
   mounted() {
     this.getProduct(this.id)
     this.searchAllComments()
+    this.showComments(false)
+    this.closeAlert()
   },
   watch: {
     isCommentAdded() {
@@ -143,13 +145,14 @@ export default {
       'showComments',
       'resetSubmit'
     ]),
-    ...mapActions('alert', ['showAlert']),
+    ...mapActions('alert', ['showAlert', 'closeAlert']),
   },
   beforeRouteLeave (_, from, next) {
     // Avant de changer de page, on ne cache plus la ProductList
     if (from === `products/${this.id}`) {
       next(false)
     } else {
+      this.closeAlert()
       this.hideParent(false)
       next()
     }

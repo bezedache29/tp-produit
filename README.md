@@ -70,8 +70,6 @@ Le commentaire contient :
 - [x]  Composant ProductDetails permet de voir les détails du produit sélectionné. (Détails + Commentaires du produit)
 - [x]  Composant ProductDetails permet d'ajouter et de voir les commentaires du produit
 - [x]  Composant ProductComment qui permet de voir les détaisl d'un commentaire
-- [ ]  Supprimer un produit
-- [ ]  Voir les détails d'un produit avec l'apparition du champ details du produit
-- [ ]  Composant ProductDetail qui affichera les détails d'un produit + Style
+- [x]  Supprimer un produit + supprimer les commentaires ratachés au produit
 - [ ]  Composant ContactForm qui affichera un formulaire de contact + Style
 - [ ]  Composant ResponsesForm qui affichera toutes les résultats de tous les envoies de formulaire + Style

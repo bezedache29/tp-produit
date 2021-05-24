@@ -19,7 +19,7 @@
         <details>
           <summary>Actions</summary>
           <div class="product-card__body__btns">
-            <button-primary color="danger">Supprimer</button-primary>
+            <button-primary color="danger" @click="showModalDeleteProduct(id)">Supprimer</button-primary>
             <button-primary color="warning" @click="showModalUpdateProduct(id)">Modifier</button-primary>
           </div>
         </details>
@@ -46,7 +46,8 @@ export default {
   methods: {
     ...mapActions('product', [
       'showModalUpdateProduct',
-      'goToDetailsProduct'
+      'goToDetailsProduct',
+      'showModalDeleteProduct'
     ])
   }
 }

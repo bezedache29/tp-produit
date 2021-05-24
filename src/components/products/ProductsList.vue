@@ -43,7 +43,7 @@
         </template>
         <template v-slot:footer>
           <button-primary color="danger" class="mr-1" @click="showModalAddProduct(false)">Annuler</button-primary>
-          <button-primary color="primary" class="ml-1" @click="addProduct(product)">Ajouter</button-primary>
+          <button-primary color="primary" class="ml-1" @click="addProduct(productAtAdd)">Ajouter</button-primary>
         </template>
       </modal-app>
     </transition>
@@ -86,6 +86,20 @@
       </template>
     </modal-app>
     <!-- End Modal Update Produit -->
+
+    <!-- Start Modal Delete Produit -->
+    <modal-app v-if="isModalDeleteProduct">
+      <template v-slot:header>
+        Supprimer le produit {{ product.title }} ?
+      </template>
+      <template v-slot:default>
+        <div class="flex-x-y">
+          <button-primary color="danger" class="mr-1" @click="closeModalDeleteProduct">Non</button-primary>
+          <button-primary color="primary" class="ml-1" @click="deleteProduct(productId)">Oui</button-primary>
+        </div>
+      </template>
+    </modal-app>
+    <!-- End Modal Delete Produit -->
 
     <!-- Faire une recherche par titre de produit ?  -->
     
@@ -135,10 +149,10 @@ export default {
   },
 
   mounted() {
-    console.log(this.isParentHide)
     this.hideParent(false)
     this.showModalAddProduct(false)
     this.searchAllProducts()
+    this.closeAlert()
   },
 
   watch: {
@@ -167,6 +181,11 @@ export default {
       if (this.isParentHide) {
         this.hideParent(true)
       }
+    },
+    isProductAndCommentsDeleted() {
+      this.closeModalDeleteProduct()
+      this.searchAllProducts()
+      this.resetDeleteProductAndComments()
     }
   },
 
@@ -174,7 +193,7 @@ export default {
     hasError() {
       return this.title === '' || this.img === '' || this.desc === '' || this.price === ''
     },
-    product() {
+    productAtAdd() {
       return { title: this.title, img: this.img, desc: this.desc, price: this.price, details: this.details }
     },
     productUpdate() {
@@ -191,7 +210,8 @@ export default {
       'priceError',
       'hasError',
       'isProductAdded',
-      'productUpdated'
+      'productUpdated',
+      'product'
     ]),
     ...mapState('alert', ['isAlert']),
     ...mapState('product', [
@@ -200,8 +220,10 @@ export default {
       'isModalUpdate',
       'isProductUpdated',
       'cleanErrors',
-      'isParentHide'
-    ])
+      'isParentHide',
+      'isModalDeleteProduct'
+    ]),
+    ...mapState('comments', ['isProductAndCommentsDeleted'])
   },
 
   methods: {
@@ -224,7 +246,10 @@ export default {
       'resetErrors',
       'updateProduct'
     ]),
-    ...mapActions('alert', ['showAlert']),
+    ...mapActions('comments', [
+      'deleteProduct'
+    ]),
+    ...mapActions('alert', ['showAlert', 'closeAlert']),
     productNeedUpdate() {
       this.titleUpdate = this.product.title
       this.imgUpdate = this.product.img
@@ -236,8 +261,10 @@ export default {
       'closeModalUpdateProduct',
       'resetUpdate',
       'newProduct',
-      'hideParent'
-    ])
+      'hideParent',
+      'closeModalDeleteProduct'
+    ]),
+    ...mapActions('comments', ['resetDeleteProductAndComments'])
   }
 }
 </script>

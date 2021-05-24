@@ -136,7 +136,8 @@ const products = {
 
       if (context.state.hasError === false) {
 
-        const url = context.state.url + '/products.json'
+        const url = context.state.url + 'products.json'
+
         const item = { title: payload.title, img: payload.img, desc: payload.desc, price: payload.price, details: payload.details }
 
         try{
@@ -152,7 +153,7 @@ const products = {
     },
     async searchAllProducts(context) {
 
-      const url = context.state.url + '/products.json'
+      const url = context.state.url + 'products.json'
       const firebaseResponse = await axios.get(url)
 
       context.commit('UPDATE_PRODUCTS', firebaseResponse.data)
