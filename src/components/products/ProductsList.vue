@@ -1,5 +1,5 @@
 <template>
-  <div class="products">
+  <div class="products" v-if="!isParentHide">
 
     <!-- Bouton d'ajout -->
     <div class="products__btn">
@@ -133,6 +133,8 @@ export default {
   },
 
   mounted() {
+    console.log(this.isParentHide)
+    this.hideParent(false)
     this.showModalAddProduct(false)
     this.searchAllProducts()
   },
@@ -158,8 +160,12 @@ export default {
     },
     productUpdated() {
       this.newProduct()
+    },
+    isParentHide() {
+      if (this.isParentHide) {
+        this.hideParent(true)
+      }
     }
-    
   },
 
   computed: {
@@ -191,7 +197,8 @@ export default {
       'productId',
       'isModalUpdate',
       'isProductUpdated',
-      'cleanErrors'
+      'cleanErrors',
+      'isParentHide'
     ])
   },
 
@@ -226,10 +233,10 @@ export default {
     ...mapActions('product', [
       'closeModalUpdateProduct',
       'resetUpdate',
-      'newProduct'
+      'newProduct',
+      'hideParent'
     ])
   }
-
 }
 </script>
 

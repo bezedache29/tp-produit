@@ -12,7 +12,7 @@
         <h3 class="text-center m-1 t-u">Description</h3>
         <p class="product-card__body__desc">{{ product.desc }}</p>
         <div class="product-card__body__bottom">
-          <a>Voir détails</a>
+          <a @click="goToDetailsProduct(id)">Voir détails</a>
           <p>{{ product.price }} €</p>
         </div>
         
@@ -44,7 +44,10 @@ export default {
     ButtonPrimary
   },
   methods: {
-    ...mapActions('product', ['showModalUpdateProduct'])
+    ...mapActions('product', [
+      'showModalUpdateProduct',
+      'goToDetailsProduct'
+    ])
   }
 }
 </script>
