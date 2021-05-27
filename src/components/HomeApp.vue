@@ -1,6 +1,10 @@
 <template>
-  <h1>n°1 du high-tech et du matériel informatique, élu Service Client de l'Année. Comparez et achetez en livraison rapide à domicile ou en magasin.</h1>
-  <img src="https://jvmag.ch/wp-content/uploads/2019/07/1715379876_ap.jpg" alt="" class="bg-image">
+  <div class="placement">
+    <div class="txt">
+      <h1>n°1 du high-tech et du matériel informatique, élu Service Client de l'Année. Comparez et achetez en livraison rapide à domicile ou en magasin.</h1>
+    </div>
+    <img src="https://jvmag.ch/wp-content/uploads/2019/07/1715379876_ap.jpg" alt="" class="bg-image">
+  </div>
 </template>
 
 <script>
@@ -10,18 +14,35 @@ export default {
 </script>
 
 <style scoped>
+
+  .txt {
+    display: flex;
+    justify-content: center;
+  }
   h1 {
-    text-align: center;
     margin-top: 10%;
     color: white;
     font-size: 40px;
+    width: 60%;
+  }
+
+  .placement {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
   }
 
   .bg-image {
     position: absolute;
     top: 7%;
-    z-index: -1;
-    /* width: 100vw; */
+    z-index: -2;
     height: 100vh;
+    width: 100vw;
+    transform: scaleX(1.1);
+    filter: blur(8px);
   }
 </style>

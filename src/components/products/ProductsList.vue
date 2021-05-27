@@ -303,7 +303,7 @@ export default {
     width: 60%;
     margin: 10px 0;
     border: none;
-    border-bottom: 1px solid #F56A00;
+    border-bottom: 1px solid #A68F1F;
     margin-right: 10%;
 
     &:focus {
@@ -314,7 +314,7 @@ export default {
   &__textarea {
     width: 60%;
     margin: 10px 0;
-    border-color: #F56A00;
+    border-color: #A68F1F;
     margin-right: 10%;
 
     &:focus {

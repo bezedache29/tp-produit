@@ -17,7 +17,7 @@
           </router-link>
         </li>
         <li class="navbar__nav__dropdown navbar__nav__li">
-          <span>Contact</span>
+          <span :class="isActive">Contact</span>
           <ul class="navbar__nav__dropdown__content">
             <li>
               <router-link class="navbar__nav__link" :to="contactForm">
@@ -39,7 +39,6 @@
 <script>
 export default {
   name: 'navbar-app',
-
   computed: {
     home() {
       return { name: 'home-app' }
@@ -53,6 +52,9 @@ export default {
     mailBox() {
       return { name: 'mail-box' }
     },
+    isActive() {
+      return this.$route.fullPath == '/form' || this.$route.fullPath == '/form/mailbox' ? 'active' : '';
+    }
   }
 }
 </script>
@@ -60,6 +62,7 @@ export default {
 <style lang="scss">
 .navbar {
   display: flex;
+  box-shadow: 0px 4px 10px 4px #000000;
 
   &__logo {
     margin: 20px;
@@ -71,14 +74,23 @@ export default {
     margin: 10px 0;
 
     &__li {
-      margin: 10px;
+      margin: 10px 20px;
+
+      span {
+        cursor: pointer;
+        padding: 10px;
+        margin-left: -10px;
+        &:hover {
+          color: #F2E635;
+        }
+      }
     }
 
     &__link {
       color: black;
 
       &:hover {
-        color: #FFD294;
+        color: #F2E635;
       }
     }
 
@@ -92,10 +104,15 @@ export default {
         min-width: 160px;
         padding: 12px 0;
         z-index: 1;
+        background-color: white;
+        padding: 10px;
+        margin-left: -10px;
+        box-shadow: 0px 10px 10px -4px #000000;
 
         li {
-          margin: 5px 0;
+          margin: 10px 0;
           color: yellow;
+          padding: 5px 0;
 
           &:hover {
             color: black;
@@ -110,6 +127,6 @@ export default {
   }
 }
 .active {
-    color: #F56A00;
+    color: #A68F1F;
 }
 </style>

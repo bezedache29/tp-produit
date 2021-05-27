@@ -20,6 +20,6 @@ export default {
   margin: 1% 10%;
   border-radius: 10px;
   padding: 2%;
-  background-color: #ffd29450;
+  background-color: #F2E63550;
 }
 </style>

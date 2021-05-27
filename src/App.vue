@@ -70,8 +70,8 @@ body {
 }
 
 /* VARIABLES */
-$primary-color: #F56A00;
-$secondary-color: #FFD294;
+$primary-color: #A68F1F;
+$secondary-color: #F2E635;
 $info-color: #DEAE6A;
 $danger-color: #F73B1E;
 $warning-color: #F7CC20;

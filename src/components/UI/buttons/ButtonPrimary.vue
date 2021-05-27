@@ -49,17 +49,17 @@ button {
   cursor: pointer;
 }
 .primary {
-  color: #F56A00;
-  border: 1px solid #F56A00;
-  background-color: #FFD294;
+  color: #A68F1F;
+  border: 1px solid #A68F1F;
+  background-color: #F2E635;
 
   &:hover {
-    background-color: #F56A00;
-    color: #FFD294;
+    background-color: #A68F1F;
+    color: #F2E635;
   }
 }
 .danger {
-  color: #FFD294;
+  color: #F2E635;
   border: 1px solid #F73B1E;
   background-color: #F73B1E;
 
@@ -71,10 +71,10 @@ button {
 .warning {
   background-color: #F7CC20;
   border-color: #F7CC20;
-  color: #F56A00;
+  color: #A68F1F;
 
   &:hover {
-    border-color: #F56A00;
+    border-color: #A68F1F;
   }
 }
 

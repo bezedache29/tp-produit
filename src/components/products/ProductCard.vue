@@ -62,10 +62,9 @@ export default {
     margin: 10px;
     padding: 10px;
     height: 95%;
-    border: 1px solid #F56A00;
     border-radius: 10px;
-    background-color: #ffd29450;
-    box-shadow: 0px 0px 5px #F56A00;
+    background-color: #F2E63550;
+    box-shadow: 0px 0px 5px #A68F1F;
   }
 
   &__header {
@@ -86,7 +85,7 @@ export default {
       border-radius: 5px;
       overflow: hidden;
       margin-top: 20px;
-      border: 1px solid #F56A00;
+      border: 1px solid #A68F1F;
 
       img {
         width: 100%;
@@ -116,7 +115,7 @@ export default {
 
       a {
         cursor: pointer;
-        color: #F56A00;
+        color: #A68F1F;
 
         &:hover {
           text-decoration: underline;

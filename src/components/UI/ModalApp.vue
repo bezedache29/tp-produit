@@ -51,7 +51,7 @@ export default {
     box-shadow: 0 12px 25px 0 rgba(199,175,189,.25);
     padding: 20px;
     border-radius: 10px;
-    border: 2px solid #F56A00;
+    border: 2px solid #A68F1F;
   }
   &__header {
     display: flex;

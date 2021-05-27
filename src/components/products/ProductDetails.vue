@@ -166,7 +166,7 @@ export default {
     margin: 2% 10%;
     border-radius: 10px;
     padding: 2%;
-    background-color: #ffd29450;
+    background-color: #F2E63550;
 
     h1 {
       text-align: center;
@@ -206,7 +206,7 @@ export default {
       cursor: pointer;
 
       &:hover {
-        color: #F56A00;
+        color: #A68F1F;
       }
     }
   }
