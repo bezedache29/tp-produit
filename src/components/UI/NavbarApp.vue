@@ -25,8 +25,8 @@
               </router-link>
             </li>
             <li>
-              <router-link class="navbar__nav__link" :to="responsesForm">
-                Liste des réponses
+              <router-link class="navbar__nav__link" :to="mailBox">
+                Boite de réception
               </router-link>
             </li>
           </ul>
@@ -50,8 +50,8 @@ export default {
     contactForm() {
       return { name: 'contact-form' }
     },
-    responsesForm() {
-      return { name: 'responses-form' }
+    mailBox() {
+      return { name: 'mail-box' }
     },
   }
 }

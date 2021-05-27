@@ -4,7 +4,7 @@ import HomeApp from '../components/HomeApp.vue'
 import ProductsList from '../components/products/ProductsList.vue'
 import ProductDetails from '../components/products/ProductDetails.vue'
 import ContactForm from '../components/contact/ContactForm.vue'
-import ResponsesForm from '../components/contact/ResponsesForm.vue'
+import MailBox from '../components/contact/MailBox.vue'
 
 const router = createRouter({
   routes: [
@@ -15,7 +15,7 @@ const router = createRouter({
       ] 
     },
     { name: 'contact-form', path: '/form', component: ContactForm },
-    { name: 'responses-form', path: '/form/responses', component: ResponsesForm }
+    { name: 'mail-box', path: '/form/mailbox', component: MailBox }
   ],
   history: createWebHistory(),
   linkActiveClass: 'active'
