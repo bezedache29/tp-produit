@@ -69,7 +69,7 @@ export default {
   beforeRouteLeave(to, from, next) {
       this.resetErrors();
       next()
-  }
+  },
 }
 </script>
 

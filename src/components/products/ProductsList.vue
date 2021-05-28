@@ -271,11 +271,6 @@ export default {
     ]),
     ...mapActions('comments', ['resetDeleteProductAndComments'])
   },
-  // beforeRouteEnter(to, from, next) {
-  //   console.log(to)
-  //   console.log(from)
-  //   console.log(next)
-  // },
 }
 </script>
 

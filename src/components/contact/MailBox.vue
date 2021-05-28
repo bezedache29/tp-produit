@@ -31,6 +31,11 @@ export default {
   components: {
     ButtonPrimary,
   },
+  // beforeRouteEnter(to, from, next) {
+  //   console.log(to)
+  //   console.log(from)
+  //   console.log(next)
+  // },
 }
 </script>
 

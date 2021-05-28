@@ -31,14 +31,50 @@
             </li>
           </ul>
         </li>
+        <li>
+          <span class="navbar__nav__link" @click="deconnexion" v-if="isCo">
+            Deconnexion
+          </span>
+          <span class="navbar__nav__link" @click="showModalConnexion(true)" v-else>
+            Connexion
+          </span>
+        </li>
       </ul>
     </nav>
   </div>
+
+  <modal-app v-show="showModalCo">
+    <template v-slot:header>
+      Connexion
+    </template>
+    <template v-slot:default>
+      <input type="text" v-model.trim="pseudo" placeholder="Identifiant">
+      <input type="password" v-model.trim="pwd" placeholder="Mot de passe">
+      <button-primary color="danger" @click="noConnect">Annuler</button-primary>
+      <button-primary color="primary" @click="connect({pseudo, pwd})">Connexion</button-primary>
+      <p v-if="hasError">Identifiant ou Mot incorrect</p>
+    </template>
+  </modal-app>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
+
+import ModalApp from '../UI/ModalApp'
+import ButtonPrimary from '../UI/buttons/ButtonPrimary'
+
 export default {
   name: 'navbar-app',
+  data() {
+    return {
+      pseudo: '',
+      pwd: ''
+    }
+  },
+  components: {
+    ModalApp,
+    ButtonPrimary
+  },
   computed: {
     home() {
       return { name: 'home-app' }
@@ -54,7 +90,33 @@ export default {
     },
     isActive() {
       return this.$route.fullPath == '/form' || this.$route.fullPath == '/form/mailbox' ? 'active' : '';
+    },
+    ...mapState('users', [
+      'isCo',
+      'user',
+      'hasError',
+      'showModalCo',
+      'resetInputs'
+    ])
+  },
+  watch: {
+    resetInputs() {
+      if (this.resetInputs) {
+        this.pseudo = '',
+        this.pwd = ''
+
+        this.changeResetInputs(false)
+      }
     }
+  },
+  methods: {
+    ...mapActions('users', [
+      'showModalConnexion',
+      'connect',
+      'deconnexion',
+      'noConnect',
+      'changeResetInputs'
+    ])
   }
 }
 </script>

@@ -4,6 +4,7 @@ import alert from './alert'
 import product from './product'
 import comments from './comments'
 import contact from './contact'
+import users from './users'
 
 const store = createStore({
   modules: {
@@ -11,7 +12,8 @@ const store = createStore({
     alert,
     product,
     comments,
-    contact
+    contact, 
+    users
   }
 })
 
