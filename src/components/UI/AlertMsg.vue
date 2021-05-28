@@ -22,7 +22,7 @@ export default {
 .alert {
   margin: 10px 0 30px 0;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
 

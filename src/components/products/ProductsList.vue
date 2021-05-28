@@ -10,7 +10,7 @@
     <alert-msg v-if="isAlert">Mise à jour de la liste des produits</alert-msg>
 
     <!-- Start Modal Ajout Produit -->
-    <transition name="bounce">
+    <transition name="scale-slide">
       <modal-app v-if="getIsShowModalAddProduct">
         <template v-slot:header>
           Ajout d'un produit
@@ -50,6 +50,7 @@
     <!-- End Modal Ajout Produit -->
 
     <!-- Start Modal Update Produit -->
+    <transition name="scale">
     <modal-app v-if="isModalUpdate">
       <template v-slot:header>
         Modification d'un produit
@@ -85,9 +86,11 @@
         <button-primary color="primary" class="ml-1" @click="updateProduct(productUpdate)">Modifier</button-primary>
       </template>
     </modal-app>
+    </transition>
     <!-- End Modal Update Produit -->
 
     <!-- Start Modal Delete Produit -->
+    <transition name="bounce">
     <modal-app v-if="isModalDeleteProduct">
       <template v-slot:header>
         Supprimer le produit {{ product.title }} ?
@@ -99,6 +102,7 @@
         </div>
       </template>
     </modal-app>
+    </transition>
     <!-- End Modal Delete Produit -->
 
     <!-- Faire une recherche par titre de produit ?  -->
@@ -347,5 +351,43 @@ export default {
   100% {
     transform: scale(1);
   }
+}
+
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.5s ease;
+}
+
+
+.scale-enter-from,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.scale-slide-enter-active,
+.scale-slide-leave-active {
+  position: absolute;
+  transition: all 0.85s ease;
+}
+
+
+.scale-slide-enter-from {
+  left: -100%;
+}
+
+
+.scale-slide-enter-to {
+  left: 0%;
+}
+
+
+.scale-slide-leave-from {
+  transform: scale(1);
+}
+
+
+.scale-slide-leave-to {
+  transform: scale(0.8);
 }
 </style>

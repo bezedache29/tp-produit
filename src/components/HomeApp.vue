@@ -20,7 +20,7 @@ export default {
     justify-content: center;
   }
   h1 {
-    margin-top: 10%;
+    margin-top: 15%;
     color: white;
     font-size: 40px;
     width: 60%;

@@ -62,8 +62,8 @@ export default {
     margin: 10px;
     padding: 10px;
     height: 95%;
-    border-radius: 10px;
-    background-color: #F2E63550;
+    border-radius: 5px;
+    background-color: #f2e53510;
     box-shadow: 0px 0px 5px #A68F1F;
   }
 
@@ -80,8 +80,7 @@ export default {
   &__body {
 
     &__img {
-      width: 100%;
-      height: 200px;
+      height: 100%;
       border-radius: 5px;
       overflow: hidden;
       margin-top: 20px;

@@ -164,7 +164,7 @@ export default {
 <style lang="scss" scoped>
   .details {
     margin: 2% 10%;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 2%;
     background-color: #F2E63550;
 

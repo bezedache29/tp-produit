@@ -35,7 +35,7 @@ export default {
   z-index: 100;
   overflow-x: hidden;
   background-color: rgba(222, 174, 106, .75);
-  transition: opacity 250ms 700ms ease;
+  // transition: opacity 250ms 700ms ease;
 
   &__wrap {
     position: relative;
@@ -44,13 +44,12 @@ export default {
     width: 100%;
     max-width: 50%;
     margin: 20px auto;
-    border-radius: 4px;
     overflow: hidden;
     padding-bottom: 20px;
     background-color: #fff;
     box-shadow: 0 12px 25px 0 rgba(199,175,189,.25);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 2px solid #A68F1F;
   }
   &__header {
