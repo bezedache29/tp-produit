@@ -71,5 +71,11 @@ Le commentaire contient :
 - [x]  Composant ProductDetails permet d'ajouter et de voir les commentaires du produit
 - [x]  Composant ProductComment qui permet de voir les détaisl d'un commentaire
 - [x]  Supprimer un produit + supprimer les commentaires ratachés au produit
-- [ ]  Composant ContactForm qui affichera un formulaire de contact + Style
-- [ ]  Composant ResponsesForm qui affichera toutes les résultats de tous les envoies de formulaire + Style
+- [x]  Composant ContactForm qui affichera un formulaire de contact + Style
+- [x]  Composant MailBox qui affichera toutes les résultats de tous les envoies de formulaire + Style
+- [x]  Composant MailBox ne sera accessible que si la personne est connecté au site
+- [x]  Connexion au site avec un user présent en BDD
+
+### Identifiants connexion :
+User : tophe
+Pwd : azerty
