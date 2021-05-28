@@ -47,12 +47,14 @@
     <template v-slot:header>
       Connexion
     </template>
-    <template v-slot:default>
+    <template v-slot:default class="modalContent">
       <input type="text" v-model.trim="pseudo" placeholder="Identifiant">
       <input type="password" v-model.trim="pwd" placeholder="Mot de passe">
+    </template>
+    <template v-slot:footer>
       <button-primary color="danger" @click="noConnect">Annuler</button-primary>
       <button-primary color="primary" @click="connect({pseudo, pwd})">Connexion</button-primary>
-      <p v-if="hasError">Identifiant ou Mot incorrect</p>
+      <p v-if="hasError" class="danger">Identifiant ou Mot incorrect</p>
     </template>
   </modal-app>
 </template>
@@ -155,6 +157,7 @@ export default {
 
     &__link {
       color: black;
+      cursor: pointer;
 
       &:hover {
         color: #F2E635;
@@ -195,5 +198,46 @@ export default {
 }
 .active {
     color: #A68F1F;
+}
+
+.modal__content {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  input {
+    width: 80%;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 1px solid #A68F1F;
+    padding: 10px;
+    font-size: 18px;
+    color: black;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+    color: black;
+    }
+  }
+}
+
+  .danger {
+    font-size: 14px;
+    color: red;
+  }
+.modal__footer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  align-self: center;
+  margin: 0;
+  width: 100%;
+  button {
+    width: 80%;
+    margin: 10px 0;
+  }
+
 }
 </style>
