@@ -81,9 +81,16 @@ const contact = {
       }
     },
     checkEmail(context, payload) {
-      
       if(payload != '') {
-        context.commit('EMAIL_ERROR', false);
+        console.log('pas vide');
+        console.log(payload);
+        const regex = /^[A-Za-z0-9+_.-]+@(.+)$/; //eslint-disable-line
+        const isValid = regex.exec(payload);
+        console.log(isValid);
+        if(isValid) {
+          console.log('valide');
+          context.commit('EMAIL_ERROR', false);
+        }
       } else {
         context.commit('EMAIL_ERROR', true);
         context.commit('HAS_ERROR', true);
@@ -138,6 +145,13 @@ const contact = {
       } catch(e) {
         console.log(e);
       }
+    },
+    resetErrors(context) {
+      context.commit('NAME_ERROR', false);
+      context.commit('EMAIL_ERROR', false);
+      context.commit('OBJECT_ERROR', false);
+      context.commit('CONTENT_ERROR', false);
+      context.commit('HAS_ERROR', false);
     },
   }
 }

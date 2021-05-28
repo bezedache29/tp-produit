@@ -2,13 +2,13 @@
   <div class="form-placement">
     <h1>Formulaire de contact</h1>
     <form class="form">
-      <input type="text" placeholder="Nom" v-model="name" @blur="checkName(name)">
+      <input type="text" placeholder="Nom" v-model.trim="name" @blur="checkName(name)">
       <p class="danger" v-if="nameError">Il y a une erreur sur ce champs</p>
-      <input type="text" placeholder="Email" v-model="email" @blur="checkEmail(email)">
+      <input type="text" placeholder="Email" v-model.trim="email" @blur="checkEmail(email)">
       <p class="danger" v-if="emailError">Il y a une erreur sur ce champs</p>
-      <input type="text" placeholder="Objet" v-model="object" @blur="checkObject(object)">
+      <input type="text" placeholder="Objet" v-model.trim="object" @blur="checkObject(object)">
       <p class="danger" v-if="objectError">Il y a une erreur sur ce champs}</p>
-      <textarea placeholder="Contenu" v-model="content" rows="3" @blur="checkContent(content)"></textarea>
+      <textarea placeholder="Contenu" v-model.trim="content" rows="3" @blur="checkContent(content)"></textarea>
       <p class="danger" v-if="contentError">Il y a une erreur sur ce champs</p>
       <button-primary color="primary" @click.prevent="sendContact(form)">Valider</button-primary>
     </form>
@@ -43,7 +43,7 @@ export default {
     ModalApp,
   },
   methods: {
-    ...mapActions('contact', ['sendContact', 'checkName', 'checkEmail', 'checkObject', 'checkContent', 'closeModal'])
+    ...mapActions('contact', ['sendContact', 'checkName', 'checkEmail', 'checkObject', 'checkContent', 'closeModal', 'resetErrors'])
   },
   computed: {
     form() {
@@ -65,6 +65,10 @@ export default {
         this.content = '';
       }
     }
+  },
+  beforeRouteLeave(to, from, next) {
+      this.resetErrors();
+      next()
   }
 }
 </script>
@@ -76,7 +80,7 @@ export default {
     display: flex;
     flex-flow: column;
     align-items: center;
-  margin-top: 5%;
+    margin-top: 5%;
   }
 
   h1 {
