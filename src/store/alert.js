@@ -5,8 +5,6 @@ const alert = {
       isAlert: false
     }
   },
-  getters: {
-  },
   mutations: {
     SHOW_ALERT(state, payload) {
       state.isAlert = payload

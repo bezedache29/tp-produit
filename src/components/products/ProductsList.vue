@@ -42,7 +42,7 @@
           </div>
         </template>
         <template v-slot:footer>
-          <button-primary color="danger" class="mr-1" @click="showModalAddProduct(false)">Annuler</button-primary>
+          <button-primary color="danger" class="mr-1" @click="closeModalAddProduct">Annuler</button-primary>
           <button-primary color="primary" class="ml-1" @click="addProduct(productAtAdd)">Ajouter</button-primary>
         </template>
       </modal-app>
@@ -58,27 +58,27 @@
       <template v-slot:default>
         <div class="form-group">
           <label for="title" class="form-group__label">Titre du produit*</label>
-          <input id="title" type="text" class="form-group__input" v-model="titleUpdate" @blur="checkTitle(titleUpdate)" />
+          <input id="title" type="text" class="form-group__input" v-model.trim="titleUpdate" @blur="checkTitle(titleUpdate)" />
         </div>
         <p v-if="titleError" class="form-group__error">Le titre doit être rempli</p>
         <div class="form-group">
           <label for="img" class="form-group__label">Url de l'image*</label>
-          <input id="img" type="text" class="form-group__input" v-model="imgUpdate" @blur="checkImg(imgUpdate)" />
+          <input id="img" type="text" class="form-group__input" v-model.trim="imgUpdate" @blur="checkImg(imgUpdate)" />
         </div>
         <p v-if="imgError" class="form-group__error">L'url est obligatoire et doit être un url valide</p>
         <div class="form-group">
           <label for="desc" class="form-group__label">Petite description*</label>
-          <input id="desc" type="text" class="form-group__input" v-model="descUpdate" @blur="checkDesc(descUpdate)" />
+          <input id="desc" type="text" class="form-group__input" v-model.trim="descUpdate" @blur="checkDesc(descUpdate)" />
         </div>
         <p v-if="descError" class="form-group__error">Une description est obligatoire</p>
         <div class="form-group">
           <label for="price" class="form-group__label">Prix en euros (ex: 12.34)*</label>
-          <input id="price" type="number" class="form-group__input" v-model="priceUpdate" @blur="checkPrice(priceUpdate)" />
+          <input id="price" type="number" class="form-group__input" v-model.trim="priceUpdate" @blur="checkPrice(priceUpdate)" />
         </div>
         <p v-if="priceError" class="form-group__error">Le prix est obligatoire et ne contient que des chiffres</p>
         <div class="form-group">
           <label for="details" class="form-group__label">Description détaillée</label>
-          <textarea id="details" class="form-group__textarea" cols="30" rows="10" v-model="detailsUpdate"></textarea>
+          <textarea id="details" class="form-group__textarea" cols="30" rows="10" v-model.trim="detailsUpdate"></textarea>
         </div>
       </template>
       <template v-slot:footer>
@@ -154,7 +154,7 @@ export default {
 
   mounted() {
     this.hideParent(false)
-    this.showModalAddProduct(false)
+    this.closeModalAddProduct()
     this.searchAllProducts()
     this.closeAlert()
   },
@@ -248,7 +248,8 @@ export default {
       'resetSubmit',
       'searchAllProducts',
       'resetErrors',
-      'updateProduct'
+      'updateProduct',
+      'closeModalAddProduct'
     ]),
     ...mapActions('comments', [
       'deleteProduct'
@@ -269,7 +270,12 @@ export default {
       'closeModalDeleteProduct'
     ]),
     ...mapActions('comments', ['resetDeleteProductAndComments'])
-  }
+  },
+  // beforeRouteEnter(to, from, next) {
+  //   console.log(to)
+  //   console.log(from)
+  //   console.log(next)
+  // },
 }
 </script>
 
