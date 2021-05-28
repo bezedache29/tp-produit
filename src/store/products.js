@@ -14,7 +14,6 @@ const products = {
       url: 'https://tp-produit-ddb26-default-rtdb.europe-west1.firebasedatabase.app/',
       isProductAdded: false,
       productUpdated: false
-
     }
   },
   getters: {
@@ -92,6 +91,7 @@ const products = {
         context.commit('DESC_ERROR', false)
       }
     },
+    // Permet de reset tous les champs du formulaire
     resetSubmit(context) {
       context.commit('IS_PRODUCT_ADDED', false)
     },
@@ -107,45 +107,29 @@ const products = {
     },
     async addProduct(context, payload) {
 
+      // On informe qu'il n'y a pas d'erreurs
       context.commit('HAS_ERROR', false)
 
-      if (payload.title === '') {
-        context.commit('TITLE_ERROR', true)
-        context.commit('HAS_ERROR', true)
-      } else {
-        context.commit('TITLE_ERROR', false)
-      }
-      if (payload.img === '') {
-        context.commit('IMAGE_ERROR', true)
-        context.commit('HAS_ERROR', true)
-      } else {
-        context.commit('IMAGE_ERROR', false)
-      }
-      if (payload.desc === '') {
-        context.commit('DESC_ERROR', true)
-        context.commit('HAS_ERROR', true)
-      } else {
-        context.commit('DESC_ERROR', false)
-      }
-      if (payload.price === '') {
-        context.commit('PRICE_ERROR', true)
-        context.commit('HAS_ERROR', true)
-      } else {
-        context.commit('PRICE_ERROR', false)
-      }
+      // On check tous les inputs obligatoire avant submit
+      context.dispatch('checkTitle', payload.title)
+      context.dispatch('checkImg', payload.img)
+      context.dispatch('checkDesc', payload.desc)
+      context.dispatch('checkPrice', payload.price)
 
-      if (context.state.hasError === false) {
+      // S'il n'y a pas d'erreurs on traite les informations
+      if (!context.state.hasError) {
 
-        const url = context.state.url + 'products.json'
-
+        const url = `${context.state.url}products.json`
         const item = { title: payload.title, img: payload.img, desc: payload.desc, price: payload.price, details: payload.details }
 
         try{
           const response = await axios.post(url, item)
+
           if(response.statusText === 'OK') {
             context.commit('SHOW_MODAL_ADD_PRODUCT', false)
             context.commit('IS_PRODUCT_ADDED', true)
           }
+
         } catch (e) {
           console.log(e);
         }
@@ -166,33 +150,16 @@ const products = {
     },
     async updateProduct(context, payload) {
 
+      // On informe qu'il n'y a pas d'erreurs
       context.commit('HAS_ERROR', false)
 
-      if (payload.title === '') {
-        context.commit('TITLE_ERROR', true)
-        context.commit('HAS_ERROR', true)
-      } else {
-        context.commit('TITLE_ERROR', false)
-      }
-      if (payload.img === '') {
-        context.commit('IMAGE_ERROR', true)
-        context.commit('HAS_ERROR', true)
-      } else {
-        context.commit('IMAGE_ERROR', false)
-      }
-      if (payload.desc === '') {
-        context.commit('DESC_ERROR', true)
-        context.commit('HAS_ERROR', true)
-      } else {
-        context.commit('DESC_ERROR', false)
-      }
-      if (payload.price === '') {
-        context.commit('PRICE_ERROR', true)
-        context.commit('HAS_ERROR', true)
-      } else {
-        context.commit('PRICE_ERROR', false)
-      }
+      // On check tous les inputs obligatoire avant submit
+      context.dispatch('checkTitle', payload.title)
+      context.dispatch('checkImg', payload.img)
+      context.dispatch('checkDesc', payload.desc)
+      context.dispatch('checkPrice', payload.price)
 
+      // S'il n'y a pas d'erreurs on traite les informations
       if (context.state.hasError === false) {
 
         const url = `${context.state.url}/products/${payload.productId}.json`
@@ -215,6 +182,11 @@ const products = {
           console.log(e);
         }
       }
+    },
+    closeModalAddProduct(context) {
+      context.dispatch('resetErrors')
+      context.commit('HAS_ERROR', false)
+      context.commit('SHOW_MODAL_ADD_PRODUCT', false)
     }
   }
 }

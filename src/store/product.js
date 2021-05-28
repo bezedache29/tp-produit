@@ -84,6 +84,7 @@ const product = {
       const id = payload
       router.push({ name: 'product-details', params: { id } })
     },
+    // Permet de cacher la page parent lorsque d'un details de produit est demandé
     hideParent(context, payload) {
       context.commit('HIDE_PARENT', payload)
     },

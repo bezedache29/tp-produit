@@ -15,8 +15,6 @@ const comments = {
       isProductAndCommentsDeleted: false
     }
   },
-  getters: {
-  },
   mutations: {
     SHOW_MODAL_COMMENT(state, payload) {
       state.isShowModalComment = payload
@@ -94,6 +92,7 @@ const comments = {
       console.log(context)
       console.log(payload)
     },
+    // Permet de reset les champs d'ajout de commentaire
     resetSubmit(context) {
       context.commit('IS_COMMENT_ADDED', false)
     },

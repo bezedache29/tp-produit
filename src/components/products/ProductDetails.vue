@@ -48,12 +48,12 @@
       <template v-slot:default>
         <div class="form-group">
           <label for="name" class="form-group__label">Votre nom*</label>
-          <input id="name" type="text" class="form-group__input" v-model="name" @blur="checkName(name)" />
+          <input id="name" type="text" class="form-group__input" v-model.trim="name" @blur="checkName(name)" />
         </div>
         <p v-if="nameError" class="form-group__error">Votre nom doit être rempli</p>
         <div class="form-group">
           <label for="commentary" class="form-group__label">Votre commentaire*</label>
-          <textarea id="commentary" class="form-group__textarea" cols="30" rows="10" v-model="commentary" @blur="checkCommentary(commentary)"></textarea>
+          <textarea id="commentary" class="form-group__textarea" cols="30" rows="10" v-model.trim="commentary" @blur="checkCommentary(commentary)"></textarea>
         </div>
         <p v-if="commentaryError" class="form-group__error">Votre commentaire doit être rempli</p>
       </template>
