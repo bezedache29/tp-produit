@@ -30,7 +30,7 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -2;
+    z-index: 0;
     overflow: hidden;
     height: 100vh;
     width: 100vw;
@@ -38,7 +38,7 @@ export default {
 
   .bg-image {
     position: absolute;
-    top: 7%;
+    top: 5%;
     z-index: -2;
     height: 100vh;
     width: 100vw;

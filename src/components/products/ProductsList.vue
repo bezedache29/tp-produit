@@ -277,6 +277,7 @@ export default {
 .products {
 
   margin: 0 10%;
+  margin-top: 5%;
 
   &__btn {
     display: flex;

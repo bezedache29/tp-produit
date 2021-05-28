@@ -76,6 +76,7 @@ export default {
     display: flex;
     flex-flow: column;
     align-items: center;
+  margin-top: 5%;
   }
 
   h1 {
@@ -86,8 +87,6 @@ export default {
     display: flex;
     flex-flow: column;
     align-items: center;
-    border: 1px solid grey;
-    background-color: #a6901f1c;
     width: 60%;
     padding: 40px 0;
     border-radius: 5px;
@@ -100,7 +99,6 @@ export default {
       margin: 10px 0;
       border: none;
       border-bottom: 1px solid #A68F1F;
-      background-color: transparent;
       font-family: sans-serif;
       font-size: 18px;
       color: black;

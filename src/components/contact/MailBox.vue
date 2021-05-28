@@ -4,7 +4,7 @@
     <ul>
       <li v-for="(mail, id) in mails" :key="id">
         <details @click="changeStatus({mail, id})" :class="mail.status == 1 ? 'seen' : ''">
-          <summary>{{mail.email}} à écrit {{mail.object}}</summary>
+          <summary>{{mail.email}} : {{mail.object}}</summary>
           <p>{{mail.name}} à écrit:</p>
           <p>{{mail.content}}</p>
           <button-primary color="danger" @click.prevent="del(id)">Supprimer</button-primary>
@@ -38,6 +38,10 @@ export default {
 
   .mailbox-placement {
     margin-top: 40px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  margin-top: 5%;
   }
 
   h1 {
@@ -55,7 +59,8 @@ export default {
   details {
     margin: 1rem auto;
     padding: 0 1rem;
-    width: 35em;
+    // width: 35em;
+      width: 80%;
     max-width: calc(100% - 2rem);
     position: relative;
     border: 1px solid #78909C;
@@ -134,6 +139,7 @@ export default {
   ul {
     margin: 0 0 1em;
     padding: 0 0 0 1em;
+    width: 60%;
   }
 
   li:not(:last-child) {

@@ -62,7 +62,12 @@ export default {
 <style lang="scss">
 .navbar {
   display: flex;
-  box-shadow: 0px 4px 10px 4px #000000;
+  box-shadow: 0px 2px 4px 0px #000000;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 1;
 
   &__logo {
     margin: 20px;

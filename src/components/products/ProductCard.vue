@@ -130,6 +130,7 @@ export default {
 
   details {
     cursor: pointer;
+    min-height: 100px;
   }
   summary {
     font-weight: 600;
