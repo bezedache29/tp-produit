@@ -18,6 +18,7 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import ButtonPrimary from '../UI/buttons/ButtonPrimary'
+import router from '../../router'
 export default {
   mounted() {
     this.getMails()
@@ -27,15 +28,20 @@ export default {
   },
   computed: {
     ...mapState('contact', ['mails', 'isSeen']),
+    ...mapState('users', ['isCo']),
   },
   components: {
     ButtonPrimary,
   },
-  // beforeRouteEnter(to, from, next) {
-  //   console.log(to)
-  //   console.log(from)
-  //   console.log(next)
-  // },
+  beforeRouteEnter: (_, from, next) => {
+    next(vm => {
+      if(vm.isCo == false) {
+        router.push(from.fullPath)
+      } else {
+        next()
+      }
+    })
+  }
 }
 </script>
 
