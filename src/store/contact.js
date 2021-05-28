@@ -82,13 +82,9 @@ const contact = {
     },
     checkEmail(context, payload) {
       if(payload != '') {
-        console.log('pas vide');
-        console.log(payload);
         const regex = /^[A-Za-z0-9+_.-]+@(.+)$/; //eslint-disable-line
         const isValid = regex.exec(payload);
-        console.log(isValid);
         if(isValid) {
-          console.log('valide');
           context.commit('EMAIL_ERROR', false);
         }
       } else {
